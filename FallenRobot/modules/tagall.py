@@ -16,7 +16,7 @@ async def mentionall(event):
     chat_id = event.chat_id
     if event.is_private:
         return await event.respond(
-            "__This command can be use in groups and channels!__"
+            "__Lu Bukan Admin Lu tuh Cuman Ampas Ga Usah Nyuruh Gua Tag All Bodoh!__"
         )
 
     is_admin = False
@@ -30,7 +30,7 @@ async def mentionall(event):
         ):
             is_admin = True
     if not is_admin:
-        return await event.respond("__Only admins can mention all!__")
+        return await event.respond("__Lu Bukan Admin Lu tuh Cuman Ampas Ga Usah Nyuruh Gua Tag All Bodoh!__")
 
     if event.pattern_match.group(1) and event.is_reply:
         return await event.respond("__Give me one argument!__")
@@ -46,7 +46,7 @@ async def mentionall(event):
             )
     else:
         return await event.respond(
-            "__Reply to a message or give me some text to mention others!__"
+            "__Kasih Text Atau Reply, Yang Jelas Lah Blog!__"
         )
 
     spam_chats.append(chat_id)
@@ -56,7 +56,7 @@ async def mentionall(event):
         if not chat_id in spam_chats:
             break
         usrnum += 1
-        usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}), "
+        usrtxt += f"㊗️[{usr.first_name}](tg://user?id={usr.id})\n"
         if usrnum == 5:
             if mode == "text_on_cmd":
                 txt = f"{msg}\n{usrtxt}"
@@ -75,7 +75,7 @@ async def mentionall(event):
 @client.on(events.NewMessage(pattern="^/cancel$"))
 async def cancel_spam(event):
     if not event.chat_id in spam_chats:
-        return await event.respond("__There is no proccess on going...__")
+        return await event.respond("__Ga Ada Tagall yang Berjalan Meki...__")
     is_admin = False
     try:
         partici_ = await client(GetParticipantRequest(event.chat_id, event.sender_id))
@@ -94,7 +94,7 @@ async def cancel_spam(event):
             spam_chats.remove(event.chat_id)
         except:
             pass
-        return await event.respond("__Stopped mention.__")
+        return await event.respond("__Tagall nya udah mati mek.__")
 
 
 __mod_name__ = "Tᴀɢ Aʟʟ"
